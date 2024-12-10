@@ -9,6 +9,22 @@ import re
 
 
 def generate_email_list(path: str, extension: str) -> list:
+    """Generates a list of email details from .eml files in a specified directory.
+
+    This function scans a given directory for files with a specified extension,
+    parses each email file to extract relevant information such as subject, sender,
+    recipients, date, and the body of the email. It handles both plain text and HTML
+    email formats.
+
+    Args:
+        path (str): The directory path where the .eml files are located.
+        extension (str): The file extension of the email files to be processed (e.g., 'eml').
+
+    Returns:
+        list: A list of dictionaries, each containing details of an email. Each dictionary
+              includes keys such as 'Subject', 'To', 'From', 'Cc', 'Bcc', 'Date',
+              'Attachment_Count', and 'Mail_Body'.
+    """
     mail_list = []
     for idx, file in enumerate(
         tqdm(glob.glob(os.path.join(path, f"*.{extension}")), leave=True)
@@ -30,6 +46,7 @@ def generate_email_list(path: str, extension: str) -> list:
                 mail_body = ""
 
             mail_dict = {
+                "Origin": os.path.basename(file),
                 "Subject": mail.get("Subject", "No Subject Specified"),
                 "To": mail.get("To", "No Recipients (Draft)"),
                 "From": mail.get("From", "Error in Loading Origin"),
@@ -47,11 +64,26 @@ def generate_email_list(path: str, extension: str) -> list:
     return mail_list
 
 
-def email_list2csv(email_list: list, file_name: str = "email_list.csv"):
+def email_list2csv(email_list: list, file_name: str = "email_list.csv") -> None:
+    """Saves a list of email details to a CSV file.
+
+    This function takes a list of email dictionaries and converts it into a Pandas DataFrame,
+    then saves the DataFrame to a specified CSV file. Each dictionary in the list should
+    represent an email with relevant fields such as subject, sender, recipients, and body.
+
+    Args:
+        email_list (list): A list of dictionaries containing email details. Each dictionary
+                           should include keys like 'Subject', 'To', 'From', 'Cc', 'Bcc',
+                           'Date', 'Attachment_Count', and 'Mail_Body'.
+        file_name (str, optional): The name of the output CSV file. Defaults to "email_list.csv".
+
+    Returns:
+        None: This function does not return any value; it directly saves the CSV file.
+    """
     df = pd.DataFrame(email_list)
     df.to_csv(file_name)
 
 
 if __name__ == "__main__":
     mails = generate_email_list(".\\data\\Simulation\\Set 1\\Original format\\", "eml")
-    email_list2csv(mails)
+    email_list2csv(mails, "set_1_parsed.csv")
