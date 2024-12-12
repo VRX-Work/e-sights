@@ -24,7 +24,7 @@ def initial_query_prompt() -> str:
 
 Accusation: {accusation}
 
-Your response should include:
+Your response should include in JSON format with keys elastic and semantic:
 
 1. Elasticsearch Query (JSON format):
    - Create a query that focuses on key terms and concepts related to the accusation.
