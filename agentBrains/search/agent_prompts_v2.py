@@ -135,14 +135,16 @@ Provide the following information in JSON format:
       {
         "details": "",
         "description": "",
-        "date": ""
+        "date": "",
+        "uid":"",
       }
     ]
   },
   "other_parties": {
     "name": {
       "relationship": "",
-      "role": ""
+      "role": "",
+      "uid":"uid",
     }
   },
   "summary": ""
