@@ -81,6 +81,7 @@ def process_eml_files(directory):
         if filename.endswith(".eml"):
             file_path = os.path.join(directory, filename)
             email_info = extract_email_info(file_path)
+            email_info["UID"] = idx
             email_data.append(email_info)
             cprint(f"PARSED: {file_path}", color="green")
         cprint(f"Total Files Parsed: {idx+1}", "yellow")
@@ -115,8 +116,8 @@ def save_as_csv(data, output_file):
 
 
 if __name__ == "__main__":
-    file_name = "set2_better"
-    eml_directory = "./data/Simulation/Set 2/Original format/"
+    file_name = "set_tracked"
+    eml_directory = "./data/Simulation/Set Merged/"
     email_data = process_eml_files(eml_directory)
 
     save_as_json(email_data, f"{file_name}.json")
