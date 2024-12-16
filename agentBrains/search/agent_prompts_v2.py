@@ -173,7 +173,8 @@ Provide your analysis in the following JSON format:
       {
         "event": "Description of the event",
         "credibility_score": "Score from 0-100",
-        "reasoning": "Explanation for the credibility score"
+        "reasoning": "Explanation for the credibility score",
+        "uid": "The uid of the source where event is mentioned"
       }
     ],
     "relationships_analysis": [
@@ -181,7 +182,8 @@ Provide your analysis in the following JSON format:
         "entity1": "Name of first entity",
         "entity2": "Name of second entity",
         "relationship": "Description of relationship",
-        "credibility_impact": "How this relationship affects credibility"
+        "credibility_impact": "How this relationship affects credibility",
+        "uid": "The uid of the source where entities are mentioned"
       }
     ],
     "overall_credibility_assessment": "Summary of overall credibility"
@@ -189,7 +191,8 @@ Provide your analysis in the following JSON format:
   "sufficiency": {
     "conclusion": "One of: sufficient, partial, insufficient",
     "confidence_score": "Score from 0-100",
-    "conclusion_statement": "Detailed explanation of the sufficiency conclusion"
+    "conclusion_statement": "Detailed explanation of the sufficiency conclusion",
+    "refrences": ["List of the uids referenced"]
   },
   "areas_for_further_investigation": [
     "List of specific areas or questions needing further investigation"
