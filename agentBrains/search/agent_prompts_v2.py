@@ -22,7 +22,7 @@ You will be provided with specific instructions for each task. Always strive for
 def initial_query_prompt() -> str:
     return """Task: Generate initial search queries for the following accusation, suitable for use with the SemanticHybridSearch tool.
 
-Accusation: {accusation}
+Accusation: {accusation_prompt}
 Response Format: Provide the response in JSON format with the following keys:
 elastic: Contains the Elasticsearch query in JSON format.
 semantic: Contains the semantic search query as a string.
@@ -30,10 +30,10 @@ semantic: Contains the semantic search query as a string.
 Guidelines:
 Unionized Search Approach:
 - Combine Elasticsearch and semantic search capabilities effectively. For example: Use Elasticsearch to filter specific fields (e.g., recipients, senders). Use semantic search to refine or specify the context within filtered results.
-- If only one type of search is required, leave the other key empty (e.g., {} for elastic or "" for semantic).
+- If only one type of search is required, leave the other key empty (e.g., {{}} for elastic or "" for semantic).
 
 Data Schema:
-{
+{{
   "Subject": "Subject of mail",
   "To": "All Recipients",
   "From": "Name of sender",
@@ -42,7 +42,7 @@ Data Schema:
   "Date": "Date in datetime format",
   "Attachment_Count": "Number of attachments",
   "Mail_Body": "Content of the mail in plain text format"
-}
+}}
 
 Elasticsearch Query:
 - Focus on key terms and concepts relevant to the accusation.
@@ -60,12 +60,12 @@ Efficiency and Contextual Relevance:
 - Clearly distinguish between facts, inferences, and speculations.
 
 Output Example:
-{
-  "elastic": {
+{{
+  "elastic": {{
     // Elasticsearch query here
-  },
+  }},
   "semantic": "Semantic search string here"
-}
+}}
 
 Do not provide a preamble or an explanation, the output should strictly be in JSON format with no comments"""  # Pass
 
@@ -82,10 +82,10 @@ Accusation: {accusation}
 Guidelines:
 Unionized Search Approach:
 - Combine Elasticsearch and semantic search capabilities effectively. For example: Use Elasticsearch to filter specific fields (e.g., recipients, senders). Use semantic search to refine or specify the context within filtered results.
-- If only one type of search is required, leave the other key empty (e.g., {} for elastic or "" for semantic).
+- If only one type of search is required, leave the other key empty (e.g., {{}} for elastic or "" for semantic).
 
 Data Schema:
-{
+{{
   "Subject": "Subject of mail",
   "To": "All Recipients",
   "From": "Name of sender",
@@ -94,7 +94,7 @@ Data Schema:
   "Date": "Date in datetime format",
   "Attachment_Count": "Number of attachments",
   "Mail_Body": "Content of the mail in plain text format"
-}
+}}
 
 Your refined queries should:
 - Build upon the insights gained from the extracted information.
@@ -105,12 +105,12 @@ Your refined queries should:
 
 Refined Search Queries:
 
-{
-  "elastic": {
+{{
+  "elastic": {{
     // Elasticsearch query here
-  },
+  }},
   "semantic": "Semantic search string here"
-}
+}}
 
 Do not provide a preamble or an explanation, the output should strictly be in JSON format with no comments
 """  # Pass
