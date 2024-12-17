@@ -157,7 +157,7 @@ Ensure all relevant information is included within this structure. Omit any expl
 def analyze_evidence_prompt() -> str:
     return """Task: Analyze the extracted information and determine if it provides sufficient evidence for the accusation. If not, suggest areas for further investigation.
 
-Accusation: {accusation}
+Accusation: {accusation_prompt}
 
 Extracted Information:
 {info}
@@ -167,37 +167,37 @@ Summary of Previous Information:
 
 Provide your analysis in the following JSON format:
 
-{
-  "credibility_and_reliability": {
+{{
+  "credibility_and_reliability": {{
     "events_analysis": [
-      {
+      {{
         "event": "Description of the event",
         "credibility_score": "Score from 0-100",
         "reasoning": "Explanation for the credibility score",
         "uid": "The uid of the source where event is mentioned"
-      }
+      }}
     ],
     "relationships_analysis": [
-      {
+      {{
         "entity1": "Name of first entity",
         "entity2": "Name of second entity",
         "relationship": "Description of relationship",
         "credibility_impact": "How this relationship affects credibility",
         "uid": "The uid of the source where entities are mentioned"
-      }
+      }}
     ],
     "overall_credibility_assessment": "Summary of overall credibility"
   },
-  "sufficiency": {
+  "sufficiency": {{
     "conclusion": "One of: sufficient, partial, insufficient",
     "confidence_score": "Score from 0-100",
     "conclusion_statement": "Detailed explanation of the sufficiency conclusion",
     "refrences": ["List of the uids referenced"]
-  },
+  }},
   "areas_for_further_investigation": [
     "List of specific areas or questions needing further investigation"
   ]
-}
+}}
 
 Ensure all relevant analysis is included within this structure. Omit any explanations or additional text outside the JSON.
 """
