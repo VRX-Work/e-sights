@@ -77,7 +77,7 @@ Current Elasticsearch Query: {elastic_query}
 Current Semantic Query: {semantic_query}
 Extracted Info Summary: {info}
 Areas for Further Investigation: {areas}
-Accusation: {accusation}
+Accusation: {accusation_prompt}
 
 Guidelines:
 Unionized Search Approach:
@@ -119,7 +119,7 @@ Do not provide a preamble or an explanation, the output should strictly be in JS
 def information_extraction_prompt() -> str:
     return """Task: Extract relevant information from the hybrid search results related to the following accusation:
 
-Accusation: {accusation}
+Accusation: {accusation_prompt}
 
 Hybrid Search Results:
 {results}
@@ -187,7 +187,7 @@ Provide your analysis in the following JSON format:
       }}
     ],
     "overall_credibility_assessment": "Summary of overall credibility"
-  },
+  }},
   "sufficiency": {{
     "conclusion": "One of: sufficient, partial, insufficient",
     "confidence_score": "Score from 0-100",
