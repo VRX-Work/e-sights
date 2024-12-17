@@ -128,27 +128,27 @@ Analyze the results, which combine Elasticsearch and Faiss search outcomes. Each
 
 Provide the following information in JSON format:
 
-{
+{{
   "accused_suspects": [],
-  "incident_details": {
+  "incident_details": {{
     "events": [
-      {
+      {{
         "details": "",
         "description": "",
         "date": "",
         "uid":"",
-      }
+      }}
     ]
-  },
-  "other_parties": {
-    "name": {
+  }},
+  "other_parties": {{
+    "name": {{
       "relationship": "",
       "role": "",
       "uid":"uid",
-    }
-  },
+    }}
+  }},
   "summary": ""
-}
+}}
 
 Ensure all relevant information is included within this structure. Omit any explanations or additional text outside the JSON.
 """  # Pass
